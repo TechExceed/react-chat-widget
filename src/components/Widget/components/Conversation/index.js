@@ -25,13 +25,13 @@ const Conversation = props =>
       autofocus={props.autofocus}
     />
 
-    <div className={"rcw-copyrights"}>
-      <div><a href={"http://www.exceed.ai"} class={"link"}>
-        <span className={"title"}>Chat by
-          <div className={"logo"}><img src={"https://s3.us-east-2.amazonaws.com/sdr.exceed.ai/logo_x_hires.png"}/></div>
-          <div className="name">Exceed</div>
-        </span>
-      </a></div>
+    <div className={"rcw-copyrights1"}>
+      <div>
+        <a href={"http://www.exceed.ai"} class={"link"}>
+          <span className={"title1"}>Chat by</span><span className={"logo1"}><img
+          src={"https://s3.amazonaws.com/static.frontend.exceed.ai/logo+(2).png"}/></span>
+        </a>
+      </div>
     </div>
   </div>;
 
