@@ -6,11 +6,11 @@ import close from '@assets/clear-button.svg';
 import './style.scss';
 
 
-const Header = ({ title, subtitle, toggleChat, showCloseButton, titleAvatar }) =>
+const Header = ({ title, subtitle, toggleChat, showCloseButton, titleAvatar, customLauncherMode }) =>
   <div className="rcw-header">
     {showCloseButton &&
-      <button className="rcw-close-button" onClick={toggleChat}>
-        <img src={close} className="rcw-close" alt="close" />
+      <button className={customLauncherMode ? "rcw-close-button_custom" : "rcw-close-button"} onClick={toggleChat}>
+        <img src={close} className={customLauncherMode ? "rcw-close_custom" : "rcw-close"} alt="close" />
       </button>
     }
     <h4 className="rcw-title">

@@ -39,6 +39,7 @@ class Widget extends Component {
         senderPlaceHolder={this.props.senderPlaceHolder}
         profileAvatar={this.props.profileAvatar}
         showCloseButton={this.props.showCloseButton}
+        customLauncherMode={this.props.customLauncherMode}
         fullScreenMode={this.props.fullScreenMode}
         badge={this.props.badge}
         autofocus={this.props.autofocus}
@@ -56,6 +57,7 @@ Widget.propTypes = {
   senderPlaceHolder: PropTypes.string,
   profileAvatar: PropTypes.string,
   showCloseButton: PropTypes.bool,
+  customLauncherMode : PropTypes.bool,
   fullScreenMode: PropTypes.bool,
   badge: PropTypes.number,
   autofocus: PropTypes.bool,

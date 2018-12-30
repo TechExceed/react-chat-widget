@@ -15,6 +15,7 @@ const ConnectedWidget = props =>
       senderPlaceHolder={props.senderPlaceHolder}
       profileAvatar={props.profileAvatar}
       showCloseButton={props.showCloseButton}
+      customLauncherMode={props.customLauncherMode}
       fullScreenMode={props.fullScreenMode}
       badge={props.badge}
       autofocus={props.autofocus}
@@ -30,6 +31,7 @@ ConnectedWidget.propTypes = {
   senderPlaceHolder: PropTypes.string,
   profileAvatar: PropTypes.string,
   showCloseButton: PropTypes.bool,
+  customLauncherMode : PropTypes.bool,
   fullScreenMode: PropTypes.bool,
   badge: PropTypes.number,
   autofocus: PropTypes.bool,
@@ -43,7 +45,8 @@ ConnectedWidget.defaultProps = {
   showCloseButton: true,
   fullScreenMode: false,
   badge: 0,
-  autofocus: true
+  autofocus: true,
+  customLauncherMode : true
 };
 
 export default ConnectedWidget;
