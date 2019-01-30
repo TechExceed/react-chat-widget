@@ -57,7 +57,7 @@ import 'react-chat-widget/lib/styles.css';
 
 class App extends Component {
   handleNewUserMessage = (newMessage) => {
-    console.log(`New message incomig! ${newMessage}`);
+    console.log(`New message incoming! ${newMessage}`);
     // Now send the message throught the backend API
   }
 
@@ -89,7 +89,7 @@ class App extends Component {
   }
 
   handleNewUserMessage = (newMessage) => {
-    console.log(`New message incomig! ${newMessage}`);
+    console.log(`New message incoming! ${newMessage}`);
     // Now send the message throught the backend API
     addResponseMessage(response);
   }
@@ -124,7 +124,7 @@ class App extends Component {
   }
 
   handleNewUserMessage = (newMessage) => {
-    console.log(`New message incomig! ${newMessage}`);
+    console.log(`New message incoming! ${newMessage}`);
     // Now send the message throught the backend API
   }
 
@@ -161,7 +161,7 @@ export default App;
 |**fullScreenMode**|PropTypes.bool|NO|false|Allow the use of full screen in full desktop mode|
 |**badge**|PropTypes.number|NO|0|Display a notification badge on the launcher if the value is greater than 0|
 |**autofocus**|PropTypes.bool|NO|true|Autofocus or not the user input|
-|**customLauncher**|PropTypes.func|NO||Custom Launcher component to use instead of the default|
+|**launcher**|PropTypes.func|NO||Custom Launcher component to use instead of the default|
 
 #### Styles
 
@@ -183,7 +183,7 @@ That way, you can leave the JS clean and keep the styles within the CSS.
 
 #### Messages
 
-In order to add new messages, you are provided with the following methods:
+If you want to add new messages, you can use the following methods:
 
 - **addResponseMessage**
   - params:
@@ -233,13 +233,21 @@ You can also control certain actions of the widget:
 
 ##### Custom Launcher
 
-You can use a custom component for the Launcher if you need one that's not the default, simply use the **customLauncher** prop like:
+You can use a custom component for the Launcher if you need one that's not the default, simply use the **launcher** prop like:
 
 ```js
   launcher={handleToggle => this.getCustomLauncher(handleToggle)}
 ```
 
-`getCustomLauncher()`is a method that will return the `Launcher`component. By default, the function passed by that prop, will receive the `handleToggle` parammeter that is the method which toggles the widget.
+`getCustomLauncher()` is a method that will return the `Launcher` component. By default, the function passed by that prop, will receive the `handleToggle` parameter which is the method that will toggle the widget.
+
+For example, if you want to use a simple button to toggle the widget:
+
+```js
+  launcher={handleToggle => (
+    <button onClick={handleToggle}>Toggle</button>
+  )}
+```
 
 ## About
 
