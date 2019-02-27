@@ -18,6 +18,7 @@ const WidgetLayout = props => (
         subtitle={props.subtitle}
         sendMessage={props.onSendMessage}
         senderPlaceHolder={props.senderPlaceHolder}
+        onQuickButtonClicked={props.onQuickButtonClicked}
         profileAvatar={props.profileAvatar}
         toggleChat={props.onToggleConversation}
         showChat={props.showChat}
@@ -47,6 +48,7 @@ WidgetLayout.propTypes = {
   onToggleConversation: PropTypes.func,
   showChat: PropTypes.bool,
   senderPlaceHolder: PropTypes.string,
+  onQuickButtonClicked: PropTypes.func,
   profileAvatar: PropTypes.string,
   showCloseButton: PropTypes.bool,
   customLauncherMode : PropTypes.bool,

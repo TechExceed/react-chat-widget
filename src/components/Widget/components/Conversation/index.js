@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Header from "./components/Header";
-import Messages from "./components/Messages";
-import Sender from "./components/Sender";
-import "./style.scss";
+import Header from './components/Header';
+import Messages from './components/Messages';
+import Sender from './components/Sender';
+import QuickButtons from './components/QuickButtons';
+import './style.scss';
 
 const Conversation = props =>
   <div className="rcw-conversation-container">
@@ -19,6 +20,7 @@ const Conversation = props =>
     <Messages
       profileAvatar={props.profileAvatar}
     />
+    <QuickButtons onQuickButtonClicked={props.onQuickButtonClicked} />
     <Sender
       sendMessage={props.sendMessage}
       placeholder={props.senderPlaceHolder}
