@@ -51,30 +51,32 @@
 }
 
 .rcw-copyrights-link {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .rcw-copyrights {
   display: flex !important;
   flex-direction: row-reverse !important;
-  align-items: flex-start;
-  padding: 4px 11px 4px 0px;
-  font-family: Brandon, Helvetica Neue, Helvetica, sans-serif;
-  text-align: right;
-  font-size: .875rem !important;
-  color: #9a9a9a;
+  align-items: flex-start !important;
+  padding: 4px 11px 4px 0px !important;
+  font-family: Brandon, Helvetica Neue, Helvetica, sans-serif !important;
+  text-align: right !important;
+  font-size: 14px !important;
+  line-height: 14px !important;
+  font-weight: 400 !important;
+  color: #9a9a9a !important;
 
   .rcw-copyrights-logo img {
-    width: 15px;
-    height: 17px;
-    padding-left: 3px;
-    padding-right: 3px;
+    width: 15px !important;
+    height: 17px !important;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
   }
 }
 
 .rcw-copyrights:hover {
-  color: #0960c5;
-  font-weight: 500;
+  color: #0960c5 !important;
+  font-weight: 500 !important;
 }
 
 //
