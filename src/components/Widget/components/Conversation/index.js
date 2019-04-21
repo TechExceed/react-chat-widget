@@ -28,13 +28,15 @@ const Conversation = props =>
       autofocus={props.autofocus}
     />
 
-    <a href={"http://www.exceed.ai"} className={"rcw-copyrights-link"}>
-      <div className={"rcw-copyrights"}>
-        {/*<div className="name">Exceed</div>*/}
-        <div className={"rcw-copyrights-logo"}><img src={"https://s3.us-east-2.amazonaws.com/sdr.exceed.ai/logo_x_hires.png"}/></div>
-        <div className={"rcw-copyrights-title"}>Chat by Exceed</div>
-      </div>
-    </a>
+    {
+      props.showCopyrights &&
+      <a href={"http://www.exceed.ai"} className={"rcw-copyrights-link"}>
+        <div className={"rcw-copyrights"}>
+          <div className={"rcw-copyrights-logo"}><img src={"https://s3.us-east-2.amazonaws.com/sdr.exceed.ai/logo_x_hires.png"}/></div>
+          <div className={"rcw-copyrights-title"}>Chat by Exceed</div>
+        </div>
+      </a>
+    }
 
   </div>;
 
@@ -48,7 +50,8 @@ Conversation.propTypes = {
   toggleChat: PropTypes.func,
   showCloseButton: PropTypes.bool,
   disabledInput: PropTypes.bool,
-  autofocus: PropTypes.bool
+  autofocus: PropTypes.bool,
+  showCopyrights : PropTypes.bool,
 };
 
 export default Conversation;
