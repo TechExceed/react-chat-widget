@@ -31,6 +31,7 @@
 .rcw-copyrights {
   display: flex !important;
   align-items: center !important;
+  justify-content: flex-end !important;
   padding: 0 11px 4px 0px !important;
   font-family: Brandon, Helvetica Neue, Helvetica, sans-serif !important;
   text-align: right !important;
@@ -43,7 +44,7 @@
 
   .rcw-copyrights-logo {
     display: flex;
-    opacity: 60%;
+    opacity: 60% !important;
   }
 
   .rcw-copyrights-logo img {
