@@ -8,10 +8,13 @@ package-lock.json
 .DS_Store
 
 # Build files
-lib
+# lib
 
 # Test files
 coverage
+
+# vscode
+.vscode
 
 .idea
 .idea/
