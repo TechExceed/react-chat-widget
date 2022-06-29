@@ -30,7 +30,7 @@ const Conversation = props =>
 
     {
       props.showCopyrights &&
-      <a href={"http://www.exceed.ai"} className={"rcw-copyrights-link"}>
+      <a href={"http://www.exceed.ai"} target="_blank" className={"rcw-copyrights-link"}>
         <div className={"rcw-copyrights"}>
           <div className={"rcw-copyrights-title"}>Chat by Exceed</div>
           <div className={"rcw-copyrights-logo"}><img src={"https://s3.us-east-2.amazonaws.com/sdr.exceed.ai/logo_x_hires.png"}/></div>
