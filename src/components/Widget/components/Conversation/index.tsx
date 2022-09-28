@@ -34,6 +34,8 @@ type Props = {
   showTimeStamp: boolean;
   resizable?: boolean;
   emojis?: boolean;
+  customLauncherMode?: boolean;
+  showCopyrights?: boolean;
 };
 
 function Conversation({
@@ -54,7 +56,9 @@ function Conversation({
   sendButtonAlt,
   showTimeStamp,
   resizable,
-  emojis
+  emojis,
+  customLauncherMode,
+  showCopyrights
 }: Props) {
   const [containerDiv, setContainerDiv] = useState<HTMLElement | null>();
   let startX, startWidth;
@@ -112,6 +116,7 @@ function Conversation({
         subtitle={subtitle}
         toggleChat={toggleChat}
         showCloseButton={showCloseButton}
+        customLauncherMode={customLauncherMode}
         titleAvatar={titleAvatar}
       />
       <Messages
@@ -135,6 +140,13 @@ function Conversation({
         onPressEmoji={togglePicker}
         onChangeSize={setOffset}
       />
+      {showCopyrights &&
+      <a href={"http://www.exceed.ai"} target="_blank" className={"rcw-copyrights-link"}>
+        <div className={"rcw-copyrights"}>
+          <div className={"rcw-copyrights-title"}>Chat by Exceed</div>
+          <div className={"rcw-copyrights-logo"}><img src={"https://s3.us-east-2.amazonaws.com/sdr.exceed.ai/logo_x_hires.png"}/></div>
+        </div>
+      </a>}
     </div>
   );
 }

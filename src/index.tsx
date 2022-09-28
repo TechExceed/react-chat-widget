@@ -31,6 +31,8 @@ type Props = {
   imagePreview?: boolean;
   zoomStep?: number;
   emojis?: boolean;
+  customLauncherMode?: boolean;
+  showCopyrights?: boolean;
   handleSubmit?: AnyFunction;
   showBadge?: boolean;
   resizable?: boolean;
@@ -63,7 +65,9 @@ function ConnectedWidget({
   handleSubmit,
   showBadge,
   resizable,
-  emojis
+  emojis,
+  customLauncherMode,
+  showCopyrights
 }: Props) {
   return (
     <Provider store={store}>
@@ -95,6 +99,8 @@ function ConnectedWidget({
         showBadge={showBadge}
         resizable={resizable}
         emojis={emojis}
+        customLauncherMode={customLauncherMode}
+        showCopyrights={showCopyrights}
       />
     </Provider>
   );
@@ -117,6 +123,8 @@ const defaultProps = {
   imagePreview: false,
   zoomStep: 80,
   showBadge: true,
+  customLauncherMode: true,
+  showCopyrights: true,
 };
 ConnectedWidget.defaultProps = defaultProps;
 

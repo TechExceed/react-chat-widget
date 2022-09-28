@@ -8,14 +8,15 @@ type Props = {
   toggleChat: () => void;
   showCloseButton: boolean;
   titleAvatar?: string;
+  customLauncherMode?: boolean;
 }
 
-function Header({ title, subtitle, toggleChat, showCloseButton, titleAvatar }: Props) {
+function Header({ title, subtitle, toggleChat, showCloseButton, titleAvatar, customLauncherMode }: Props) {
   return (
     <div className="rcw-header">
       {showCloseButton &&
-        <button className="rcw-close-button" onClick={toggleChat}>
-          <img src={close} className="rcw-close" alt="close" />
+        <button className={customLauncherMode ? "rcw-close-button_custom" : "rcw-close-button"} onClick={toggleChat}>
+          <img src={close} className={customLauncherMode ? "rcw-close_custom" : "rcw-close"} alt="close" />
         </button>
       }
       <h4 className="rcw-title">
