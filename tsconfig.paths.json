@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
+      "react": [ "./node_modules/@types/react"],
       "@assets": ["./assets"],
       "@actions": ["./src/store/actions"],
       "@types": ["./src/store/types"],

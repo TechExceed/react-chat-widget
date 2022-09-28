@@ -139,6 +139,7 @@ function Conversation({
         buttonAlt={sendButtonAlt}
         onPressEmoji={togglePicker}
         onChangeSize={setOffset}
+        emojis={emojis}
       />
       {showCopyrights &&
       <a href={"http://www.exceed.ai"} target="_blank" className={"rcw-copyrights-link"}>

@@ -20,9 +20,10 @@ type Props = {
   onPressEmoji: () => void;
   onChangeSize: (event: any) => void;
   onTextInputChange?: (event: any) => void;
+  emojis?: boolean;
 }
 
-function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInputChange, buttonAlt, onPressEmoji, onChangeSize }: Props, ref) {
+function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInputChange, buttonAlt, onPressEmoji, onChangeSize, emojis }: Props, ref) {
   const showChat = useSelector((state: GlobalState) => state.behavior.showChat);
   const inputRef = useRef<HTMLDivElement>(null!);
   const refContainer = useRef<HTMLDivElement>(null);
@@ -126,11 +127,12 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
 
   return (
     <div ref={refContainer} className="rcw-sender">
-      <button className='rcw-picker-btn' type="submit" onClick={handlerPressEmoji}>
+      {emojis && <button className='rcw-picker-btn' type="submit" onClick={handlerPressEmoji}>
         <img src={emoji} className="rcw-picker-icon" alt="" />
-      </button>
+      </button>}
       <div className={cn('rcw-new-message', {
           'rcw-message-disable': disabledInput,
+          'rcw-message-emojis': emojis
         })
       }>
         <div
