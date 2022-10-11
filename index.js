@@ -1,3 +1,5 @@
+import 'react/jsx-runtime';
+
 import ConnectedWidget from './src';
 import {
   addUserMessage,
@@ -9,7 +11,10 @@ import {
   toggleMsgLoader,
   dropMessages,
   isWidgetOpened,
-  setQuickButtons
+  setQuickButtons,
+  deleteMessages,
+  markAllAsRead,
+  setBadgeCount
 } from './src/store/dispatcher';
 
 export {
@@ -23,5 +28,8 @@ export {
   toggleMsgLoader,
   dropMessages,
   isWidgetOpened,
-  setQuickButtons
+  setQuickButtons,
+  deleteMessages,
+  markAllAsRead,
+  setBadgeCount
 };

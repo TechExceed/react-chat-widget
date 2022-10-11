@@ -2,11 +2,9 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: './index.js',
@@ -14,14 +12,31 @@ module.exports = {
     path: path.join(__dirname, '/lib'),
     filename: 'index.js',
     library: 'react-chat-widget',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    clean: true
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      react: path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      'react/jsx-runtime': require.resolve('./node_modules/react/jsx-runtime')
+    }
   },
+  target: 'web',
   mode: 'production',
   module: {
     rules: [
+      {
+        test: /\.ts(x?)$/,
+        exclude: [/node_modules/, /dev/],
+        use: ['babel-loader', 'ts-loader']
+      },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'source-map-loader'
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -35,43 +50,55 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              ident: 'postcss',
-              plugins: () => [
-                require('postcss-flexbugs-fixes'), // eslint-disable-line
-                autoprefixer({
-                  browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie <9'],
-                  flexbox: 'no-2009'
-                })
-              ]
+              postcssOptions: {
+                plugins: ['postcss-preset-env']
+              }
             }
           },
           {
             loader: 'sass-loader',
             options: {
-              includePaths: [path.resolve(__dirname, 'src/scss/')]
+              implementation: require('node-sass'),
+              sassOptions: {
+                includePaths: [path.resolve(__dirname, 'src/scss/')]
+              }
             }
           }
         ]
       },
       {
         test: /\.(jpg|png|gif|svg)$/,
-        use: {
-          loader: 'url-loader'
-        }
+        type: 'asset/inline'
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['lib']),
     /**
      * Known issue for the CSS Extract Plugin in Ubuntu 16.04: You'll need to install
      * the following package: sudo apt-get install libpng16-dev
      */
     new MiniCssExtractPlugin({
       filename: 'styles.css',
-      chunkFileName: '[id].css'
+      chunkFilename: '[id].css'
     }),
+    new webpack.ProvidePlugin({
+      'react': 'React'
+    })
   ],
+  externals: {
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
+    },
+    'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom'
+    }
+  },
   optimization: {
     minimizer: [
       new UglifyJsPlugin({

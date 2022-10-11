@@ -3,75 +3,81 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'dev/main.js'),
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+  entry: {
+    main: path.resolve(__dirname, 'dev/main.tsx'),
+    vendor: ['react', 'react-dom']
   },
   target: 'web',
   mode: 'development',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     compress: false,
+    host: '0.0.0.0',
     port: 3000,
     hot: true
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['.tsx', '.ts', '.js']
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: ['babel-loader', 'ts-loader']
+      },
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader"
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [
-          {
-            loader: 'style-loader',
-            options: { hmr: true }
-          },
+          'style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              ident: 'postcss',
-              plugins: () => [
-                require('postcss-flexbugs-fixes'), // eslint-disable-line
-                autoprefixer({
-                  browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie <9'],
-                  flexbox: 'no-2009'
-                })
-              ]
+              postcssOptions: {
+                plugins: ['postcss-preset-env']
+              }
             }
           },
           {
             loader: 'sass-loader',
             options: {
-              includePaths: [path.resolve(__dirname,'src/scss')]
+              implementation: require('node-sass'),
+              sassOptions: {
+                includePaths: [path.resolve(__dirname, 'src/scss/')]
+              }
             }
           }
         ]
       },
       {
         test: /\.(jpg|png|gif|svg)$/,
-        use: 'url-loader'
+        type: 'asset/inline'
       }
     ]
   },
-  devtool: 'eval',
+  devtool: 'inline-source-map',
   plugins: [
-    new CleanWebpackPlugin(['dist']),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './dev/index.html'
+    }),
+    new webpack.ProvidePlugin({
+      'React': 'react'
     })
   ],
   performance: {
